@@ -198,7 +198,7 @@ class PApi {
      */
     publish(fileName = "api.json", path = "", subPath = "", asyncCallback) {
         if (!this.BASE_DIR) {
-            this.BASE_DIR = process.env.PWD;
+            this.BASE_DIR = process.env.PWD ? process.env.PWD : process.env.HOMEPATH;
         }
         const file = JSON.stringify(this.api);
         //console.logError("received file " );
