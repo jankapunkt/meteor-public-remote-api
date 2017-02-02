@@ -1,11 +1,12 @@
-**Meteor Public API for Remote Collections, Methods and Publications**
+**Meteor Public API**
 
 Helps you to expose, what is public, while you code.
 Just import the PublicApi class and add definitions directly when you define them.
 
 
-
 ***Usage***
+
+The PublicAPI simply stores definitions of your methods, collections and publications. Add them voa the following:
 
 ```javascript
 
