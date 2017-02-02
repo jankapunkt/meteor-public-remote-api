@@ -1,12 +1,11 @@
-**Meteor Public API**
+# Meteor Public API
 
 Helps you to expose, what is public, while you code.
 Just import the PublicApi class and add definitions directly when you define them.
 
 
-***Usage***
+## Usage
 
-The PublicAPI simply stores definitions of your methods, collections and publications. Add them voa the following:
 
 ```javascript
 
@@ -76,7 +75,7 @@ And in your public folder will be something like this:
 }
 ```
 
-***LICENCE***
+## LICENCE
 
 
 MIT, see licence file.
