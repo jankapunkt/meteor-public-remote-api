@@ -198,8 +198,22 @@ class PApi {
      */
     publish(fileName = "api.json", path = "", subPath = "", asyncCallback) {
         if (!this.BASE_DIR) {
-            this.BASE_DIR = process.env.PWD ? process.env.PWD : process.cwd();
+			console.log(process.env);
+			if (String(process.env.OS).toLowerCase().indexOf("windows")>-1)
+				this.BASE_DIR = process.cwd().replace(/\\/g, "/");
+			else
+				this.BASE_DIR = process.env.PWD;
         }
+		
+		const targetPath = this.BASE_DIR + "/" + path + "public/" + subPath;
+		const pathSplit = targetPath.split("/");
+		let tmp="";
+		for (let part of pathSplit) {
+			tmp+=part+"/";
+			if (!fs.existsSync(tmp))
+				fs.mkdirSync(tmp); 
+		}
+		
         const file = JSON.stringify(this.api);
         //console.logError("received file " );
         if (!file || !fileName) {
@@ -208,9 +222,9 @@ class PApi {
         }
 
         if (asyncCallback) {
-            fs.writeFile(this.BASE_DIR + "/" + path + "public/" + subPath + fileName, file, 'utf8', asyncCallback);
+            fs.writeFile(targetPath + fileName, file, 'utf8', asyncCallback);
         }else{
-            fs.writeFileSync(this.BASE_DIR + "/" + path + "public/" + subPath + fileName, file, 'utf8');
+            fs.writeFileSync(targetPath + fileName, file, 'utf8');
         }
     }
 }

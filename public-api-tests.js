@@ -79,7 +79,7 @@ Tinytest.add('public-api - full expose', function (test) {
     //----------------------------------------------------//
 
     try {
-        PublicAPI.publish("api.json", "public-api/", "")
+        PublicAPI.publish("api.json", "public-api/", "");
     }catch(e) {
         console.log(e.message);
         console.log(e.stack);
@@ -87,8 +87,13 @@ Tinytest.add('public-api - full expose', function (test) {
     }
 
     //----------------------------------------------------//
-
-    const loadedJson = fs.readFileSync(process.env.PWD + '/public-api/public/api.json').toString();
+	
+	let baseDir;
+	if (String(process.env.OS).toLowerCase().indexOf("windows")>-1)
+				baseDir = process.cwd().replace(/\\/g, "/");
+			else
+				baseDir = process.env.PWD;
+    const loadedJson = fs.readFileSync(baseDir + '/public-api/public/api.json').toString();
     testExists(test, loadedJson, "loadJson");
 
     const jsonObj = JSON.parse(loadedJson);
