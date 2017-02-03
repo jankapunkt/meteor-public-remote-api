@@ -1,6 +1,6 @@
 Package.describe({
   name: 'jkuester:public-api',
-  version: '0.0.4',
+  version: '0.0.5',
   // Brief, one-line summary of the package.
   summary: 'Helps to expose methods, subs and collections using a public json file.',
   // URL to the Git repository containing the source code for this package.
